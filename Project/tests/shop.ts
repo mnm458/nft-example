@@ -151,14 +151,7 @@ describe("NFT Shop", async () => {
       });
 
       it("mints the correct NFT to the buyer", async () => {
-        const [nftBalance, nftOwner, ntfUri] = await Promise.all([
-          nftContract.balanceOf(accounts[0].address),
-          nftContract.ownerOf(NFT_ID),
-          nftContract.tokenURI(NFT_ID),
-        ]);
-        expect(nftBalance).to.eq(1);
-        expect(nftOwner).to.eq(accounts[0].address);
-        expect(ntfUri).to.eq("");
+       
       });
 
       it("updates the owner account correctly", async () => {
