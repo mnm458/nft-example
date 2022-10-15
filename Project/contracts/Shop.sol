@@ -9,4 +9,8 @@ contract Shop is Ownable {
     uint256 public purchaseRatio;
     uint256 public mintPrice;
     
+
+    constructor(uint256 _purchaseRatio){
+        purchaseRatio = _purchaseRatio;
+    }
 }
