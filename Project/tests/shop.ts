@@ -36,7 +36,7 @@ describe("NFT Shop", async () => {
 
     it("defines the mint price as provided in parameters", async () => {
       const mintPrice = await shopContract.mintPrice();
-      expect(mintPrice).to.eq(DEFAULT_MINT_PRICE)
+      expect(utils.formatEther(mintPrice)).to.eq(DEFAULT_MINT_PRICE)
     });
 
     it("uses a valid ERC20 as payment token", async () => {
