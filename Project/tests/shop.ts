@@ -1,11 +1,11 @@
-import { expect } from "chai";
+import { expect, util } from "chai";
 import { ethers } from "hardhat";
 // eslint-disable-next-line node/no-missing-import
 import { MyNFT, MyToken, Shop } from "../typechain";
 // eslint-disable-next-line node/no-unpublished-import
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 // eslint-disable-next-line node/no-unpublished-import
-import { BigNumber } from "ethers";
+import { BigNumber, utils } from "ethers";
 
 const DEFAULT_PURCHASE_RATIO = 100;
 const DEFAULT_MINT_PRICE = 0.3333333333333333;
@@ -18,7 +18,10 @@ describe("NFT Shop", async () => {
   
   beforeEach(async () => {
     const shopContractFactory = await ethers.getContractFactory("Shop");
-    shopContract = await shopContractFactory.deploy(DEFAULT_PURCHASE_RATIO, Number(DEFAULT_MINT_PRICE));
+    shopContract = await shopContractFactory.deploy(
+      DEFAULT_PURCHASE_RATIO, 
+      utils.parseEther(DEFAULT_MINT_PRICE.toString())
+      );
     await shopContract.deployed();
   });
 
