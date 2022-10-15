@@ -50,16 +50,11 @@ describe("NFT Shop", async () => {
   });
 
   describe("When the Shop contract is deployed", async () => {
-    it("defines the ratio as provided in parameters", async () => {
-      const purchaseRatio = await shopContract.purchaseRatio();
-      expect(purchaseRatio).to.eq(DEFAULT_PURCHASE_RATIO);
+   
     });
 
     it("defines the mint price as provided in parameters", async () => {
-      const mintPrice = await shopContract.mintPrice();
-      expect(Number(ethers.utils.formatEther(mintPrice))).to.eq(
-        Number(DEFAULT_MINT_PRICE.toFixed(18))
-      );
+
     });
 
     it("uses a valid ERC20 as payment token", async () => {
