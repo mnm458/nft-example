@@ -58,19 +58,7 @@ describe("NFT Shop", async () => {
     });
 
     it("uses a valid ERC20 as payment token", async () => {
-      const tokenContractAddress = await shopContract.paymentToken();
-      const tokenContractFactory = await ethers.getContractFactory("MyToken");
-      const paymentTokenContract =
-        tokenContractFactory.attach(tokenContractAddress);
-      const [paymentTokenName, paymentTokenSymbol, paymentTokenSupply] =
-        await Promise.all([
-          paymentTokenContract.name(),
-          paymentTokenContract.symbol(),
-          paymentTokenContract.totalSupply(),
-        ]);
-      expect(paymentTokenName.length).to.greaterThan(0);
-      expect(paymentTokenSymbol.length).to.greaterThan(0);
-      expect(paymentTokenSupply.toNumber()).to.eq(0);
+     
     });
 
     it("uses a valid ERC721 as NFT Collection", async () => {
