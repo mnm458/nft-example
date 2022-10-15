@@ -17,7 +17,7 @@ describe("NFT Shop", async () => {
   let accounts: SignerWithAddress[];
 
   beforeEach(async () => {
-
+    const shopContractFactory = await ethers.getContractFactory("Shop");
   });
 
   describe("When the Shop contract is deployed", async () => {
@@ -25,7 +25,7 @@ describe("NFT Shop", async () => {
     });
 
     it("defines the mint price as provided in parameters", async () => {
-
+      shopContract
     });
 
     it("uses a valid ERC20 as payment token", async () => {
