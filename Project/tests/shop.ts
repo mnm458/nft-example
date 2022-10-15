@@ -62,16 +62,7 @@ describe("NFT Shop", async () => {
     });
 
     it("uses a valid ERC721 as NFT Collection", async () => {
-      const nftontractAddress = await shopContract.paymentToken();
-      const nftContractFactory = await ethers.getContractFactory("MyNFT");
-      const nftCollectionContract =
-        nftContractFactory.attach(nftontractAddress);
-      const [nftCollectionName, nftCollectionSymbol] = await Promise.all([
-        nftCollectionContract.name(),
-        nftCollectionContract.symbol(),
-      ]);
-      expect(nftCollectionName.length).to.greaterThan(0);
-      expect(nftCollectionSymbol.length).to.greaterThan(0);
+
     });
   });
 
