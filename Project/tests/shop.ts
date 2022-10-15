@@ -155,11 +155,7 @@ describe("NFT Shop", async () => {
       });
 
       it("updates the owner account correctly", async () => {
-        const expectedValue = ethers.utils
-          .parseEther(DEFAULT_MINT_PRICE.toFixed(18))
-          .div(2);
-        const diff = ownerPool.sub(expectedValue);
-        expect(diff.toString()).to.eq("0");
+       
       });
 
       it("update the pool account correctly", async () => {
