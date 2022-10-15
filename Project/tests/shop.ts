@@ -9,13 +9,13 @@ import { BigNumber } from "ethers";
 
 const DEFAULT_PURCHASE_RATIO = 100;
 const DEFAULT_MINT_PRICE = 0.3333333333333333;
-
-describe("NFT Shop", async () => {
-  let tokenContract: MyToken;
+let tokenContract: MyToken;
   let nftContract: MyNFT;
   let shopContract: Shop;
   let accounts: SignerWithAddress[];
 
+describe("NFT Shop", async () => {
+  
   beforeEach(async () => {
     const shopContractFactory = await ethers.getContractFactory("Shop");
     shopContract = await shopContractFactory.deploy();
@@ -26,9 +26,14 @@ describe("NFT Shop", async () => {
    
     });
 
-    it("defines the mint price as provided in parameters", async () => {
+    it("defines the purchase ratio as provided in parameters", async () => {
       const purchaseRatio = await shopContract.purchaseRatio();
       expect(purchaseRatio).to.eq(DEFAULT_PURCHASE_RATIO)
+    });
+
+    it("defines the mint price as provided in parameters", async () => {
+      const purchaseRatio = await shopContract.mintPrice();
+      expect(purchaseRatio).to.eq(DEFAULT_MINT_PRICE)
     });
 
     it("uses a valid ERC20 as payment token", async () => {

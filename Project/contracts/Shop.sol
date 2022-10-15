@@ -7,5 +7,6 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Shop is Ownable {
     uint256 public purchaseRatio;
+    uint256 public mintPrice;
     
 }
