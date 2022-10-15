@@ -17,36 +17,7 @@ describe("NFT Shop", async () => {
   let accounts: SignerWithAddress[];
 
   beforeEach(async () => {
-    accounts = await ethers.getSigners();
-    const [tokenContractFactory, nftContractFactory, shopContractFactory] =
-      await Promise.all([
-        ethers.getContractFactory("MyToken"),
-        ethers.getContractFactory("MyNFT"),
-        ethers.getContractFactory("Shop"),
-      ]);
-    tokenContract = await tokenContractFactory.deploy();
-    await tokenContract.deployed();
-    nftContract = await nftContractFactory.deploy();
-    await nftContract.deployed();
-    shopContract = await shopContractFactory.deploy(
-      DEFAULT_PURCHASE_RATIO,
-      ethers.utils.parseEther(DEFAULT_MINT_PRICE.toFixed(18)),
-      tokenContract.address,
-      nftContract.address
-    );
-    await shopContract.deployed();
-    const minterRole = await tokenContract.MINTER_ROLE();
-    const minterRoleTx = await tokenContract.grantRole(
-      minterRole,
-      shopContract.address
-    );
-    await minterRoleTx.wait();
-    const nftMinterRole = await nftContract.MINTER_ROLE();
-    const nftMinterRoleTx = await nftContract.grantRole(
-      nftMinterRole,
-      shopContract.address
-    );
-    await nftMinterRoleTx.wait();
+
   });
 
   describe("When the Shop contract is deployed", async () => {
