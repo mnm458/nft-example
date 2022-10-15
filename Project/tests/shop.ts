@@ -18,7 +18,7 @@ describe("NFT Shop", async () => {
   
   beforeEach(async () => {
     const shopContractFactory = await ethers.getContractFactory("Shop");
-    shopContract = await shopContractFactory.deploy();
+    shopContract = await shopContractFactory.deploy(DEFAULT_PURCHASE_RATIO, Number(DEFAULT_MINT_PRICE));
     await shopContract.deployed();
   });
 
