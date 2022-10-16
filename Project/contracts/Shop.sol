@@ -12,7 +12,7 @@ contract Shop is Ownable {
     address public collection;
     
 
-    constructor(uint256 _purchaseRatio, uint256 _mintPrice){
+    constructor(uint256 _purchaseRatio, uint256 _mintPrice, address _paymentToken, address _collection){
         purchaseRatio = _purchaseRatio;
         mintPrice = _mintPrice;
         paymentToken = _paymentToken;
