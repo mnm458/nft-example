@@ -89,13 +89,14 @@ describe("NFT Shop", async () => {
   //     tokensEarned = await tokenContract.balanceOf(accounts[0].address);
   //   });
 
-  //   it("charges the correct amount of ETH", async () => {
+    it("charges the correct amount of ETH", async () => {
      
-  //   });
+    });
 
-  //   it("gives the correct amount of tokens", async () => {
+     it("gives the correct amount of tokens", async () => {
  
-   });
+     });
+  });
 
   //   describe("When a user burns an ERC20 at the Token contract", async () => {
   //     let accountValueBurn: BigNumber;
