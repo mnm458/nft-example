@@ -18,5 +18,9 @@ contract Shop is Ownable {
         paymentToken = _paymentToken;
         collection = _collection;
     }
+
+    function purchaseTokens() public payable {
+        paymentToken.mint(msg.sender, msg.value / purchaseRatio);
+    }
 }
    
