@@ -12,4 +12,14 @@ contract MyToken is ERC20, Ownable, ERC20Permit, ERC20Votes {
     function mint(address to, uint256 amount) public onlyOwner {
         _mint(to, amount);
     }
+
+      // The following functions are overrides required by Solidity.
+
+    function _afterTokenTransfer(address from, address to, uint256 amount)
+        internal
+        override(ERC20, ERC20Votes)
+    {
+        super._afterTokenTransfer(from, to, amount);
+    }
+
 }
