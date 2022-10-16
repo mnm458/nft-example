@@ -71,11 +71,11 @@ describe("NFT Shop", async () => {
     });
   });
 
-  // describe("When a user purchase an ERC20 from the Token contract", async () => {
+  describe("When a user purchase an ERC20 from the Token contract", async () => {
   //   let accountValue: BigNumber;
   //   let txFee: BigNumber;
   //   let tokensEarned: BigNumber;
-  //   const ETHER_SPEND: number = 500;
+   const ETHER_SPEND: number = 500;
 
   //   beforeEach(async () => {
   //     accountValue = await accounts[0].getBalance();
@@ -95,7 +95,7 @@ describe("NFT Shop", async () => {
 
   //   it("gives the correct amount of tokens", async () => {
  
-  //   });
+   });
 
   //   describe("When a user burns an ERC20 at the Token contract", async () => {
   //     let accountValueBurn: BigNumber;
