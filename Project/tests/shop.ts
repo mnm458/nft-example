@@ -60,7 +60,7 @@ describe("NFT Shop", async () => {
         paymentTokenContract.symbol(),
         paymentTokenContract.totalSupply(),
       ]);
-      expect(paymentTokenName.length).to.
+      expect(paymentTokenName.length).to.greaterThan(0);
     });
 
     it("uses a valid ERC721 as NFT Collection", async () => {
