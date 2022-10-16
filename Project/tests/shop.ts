@@ -40,11 +40,11 @@ describe("NFT Shop", async () => {
     });
 
     it("uses a valid ERC20 as payment token", async () => {
-     
+      const paymentToken = await shopContract.paymentToken();
     });
 
     it("uses a valid ERC721 as NFT Collection", async () => {
-
+      const collection = await shopContract.collection();
     });
   });
 
