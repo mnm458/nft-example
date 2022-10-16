@@ -40,5 +40,11 @@ contract Shop is Ownable {
         paymentToken.tranferFrom(msg.sender, address(this), mintPrice);
         collection.safeMint(msg.sender, tokenId);
     }
+
+    function returnNft(uint256 tokenId) public {
+        collection.burn(tokenId);
+        uint256 returnValue = mintPrice / 2;
+        paymentToken.transfer(msg.sender, returnValue);
+    }
 }
    
