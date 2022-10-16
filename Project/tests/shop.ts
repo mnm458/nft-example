@@ -17,10 +17,20 @@ let tokenContract: MyToken;
 describe("NFT Shop", async () => {
   
   beforeEach(async () => {
-    const shopContractFactory = await ethers.getContractFactory("Shop");
+    const [tokenContractFactory, nftContractFactory, shopContractFactory] = await Promise.all([
+      ethers.getContractFactory("MyToken"),
+      ethers.getContractFactory("MyNFT"),
+      ethers.getContractFactory("Shop")
+    ]);
+    tokenContract = await tokenContractFactory.deploy();
+    await tokenContract.deployed();
+    nftContract = await nftContractFactory.deploy();
+    await nftContract.deployed();
     shopContract = await shopContractFactory.deploy(
       DEFAULT_PURCHASE_RATIO, 
-      utils.parseEther(DEFAULT_MINT_PRICE.toFixed(18))
+      utils.parseEther(DEFAULT_MINT_PRICE.toFixed(18)), 
+      tokenContract.address,
+      nftContract.address
       );
     await shopContract.deployed();
   });
