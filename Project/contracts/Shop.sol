@@ -38,6 +38,9 @@ contract Shop is Ownable {
 
     function purchaseNft(uint256 tokenId) public {
         paymentToken.tranferFrom(msg.sender, address(this), mintPrice);
+        uint256 ownerShare = mintPrice / 2;
+        ownerPool += ownerShare;
+        publicPool += mintPrice - ownerShare;
         collection.safeMint(msg.sender, tokenId);
     }
 
