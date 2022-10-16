@@ -6,6 +6,7 @@ import { MyNFT, MyToken, Shop } from "../typechain";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 // eslint-disable-next-line node/no-unpublished-import
 import { BigNumber, utils, constants } from "ethers";
+import { promises } from "dns";
 
 const DEFAULT_PURCHASE_RATIO = 100;
 const DEFAULT_MINT_PRICE = 0.3333333333333333;
@@ -50,8 +51,16 @@ describe("NFT Shop", async () => {
     });
 
     it("uses a valid ERC20 as payment token", async () => {
-      const paymentToken = await shopContract.paymentToken();
-      expect(paymentToken).to.not.eq(constants.AddressZero)
+      const tokenContractAddress = await shopContract.paymentToken();
+      const tokenContractFactory = await ethers.getContractFactory("MyToken");
+      const paymentTokenContract = tokenContractFactory.attach(tokenContractAddress);
+      const [paymentTokenName, paymentTokenSymbol, paymentTokenSupply] =
+      await Promise.all([
+        paymentTokenContract.name(),
+        paymentTokenContract.symbol(),
+        paymentTokenContract.totalSupply(),
+      ]);
+      expect(paymentTokenName.length).to.
     });
 
     it("uses a valid ERC721 as NFT Collection", async () => {
