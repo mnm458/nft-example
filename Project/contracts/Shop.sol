@@ -50,6 +50,7 @@ contract Shop is Ownable {
         collection.burn(tokenId);
         uint256 returnValue = mintPrice / 2;
         paymentToken.transfer(msg.sender, returnValue);
+        publicPool -= returnValue;
     }
 }
    
