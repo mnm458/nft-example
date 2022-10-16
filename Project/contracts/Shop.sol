@@ -28,8 +28,8 @@ contract Shop is Ownable {
     constructor(uint256 _purchaseRatio, uint256 _mintPrice, address _paymentToken, address _collection){
         purchaseRatio = _purchaseRatio;
         mintPrice = _mintPrice;
-        paymentToken = _paymentToken;
-        collection = _collection;
+        paymentToken = IERC20MintableBurnable(_paymentToken);
+        collection = IERC721MintableBurnable(_collection);
     }
 
     function purchaseTokens() public payable {
