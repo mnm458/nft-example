@@ -1,3 +1,5 @@
+
+
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
@@ -7,27 +9,30 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 interface IERC20MintableBurnable is IERC20 {
     function mint(address, uint256) external;
-    function burnFrom(address, uint256) external;
 
+    function burnFrom(address, uint256) external;
 }
 
 interface IERC721MintableBurnable is IERC721 {
     function safeMint(address, uint256) external;
+
     function burn(uint256) external;
-
 }
-
 
 contract Shop is Ownable {
     uint256 public purchaseRatio;
     uint256 public mintPrice;
-    address public paymentToken;
-    address public collection;
     uint256 public ownerPool;
     uint256 public publicPool;
-    
+    IERC20MintableBurnable public paymentToken;
+    IERC721MintableBurnable public collection;
 
-    constructor(uint256 _purchaseRatio, uint256 _mintPrice, address _paymentToken, address _collection){
+    constructor(
+        uint256 _purchaseRatio,
+        uint256 _mintPrice,
+        address _paymentToken,
+        address _collection
+    ) {
         purchaseRatio = _purchaseRatio;
         mintPrice = _mintPrice;
         paymentToken = IERC20MintableBurnable(_paymentToken);
@@ -38,8 +43,13 @@ contract Shop is Ownable {
         paymentToken.mint(msg.sender, msg.value / purchaseRatio);
     }
 
+    function returnTokens(uint256 amount) public {
+        paymentToken.burnFrom(msg.sender, amount);
+        payable(msg.sender).transfer(amount * purchaseRatio);
+    }
+
     function purchaseNft(uint256 tokenId) public {
-        paymentToken.tranferFrom(msg.sender, address(this), mintPrice);
+        paymentToken.transferFrom(msg.sender, address(this), mintPrice);
         uint256 ownerShare = mintPrice / 2;
         ownerPool += ownerShare;
         publicPool += mintPrice - ownerShare;
@@ -52,5 +62,10 @@ contract Shop is Ownable {
         paymentToken.transfer(msg.sender, returnValue);
         publicPool -= returnValue;
     }
+
+    function ownerWithdraw(uint256 amount) public onlyOwner {
+        require(amount <= ownerPool);
+        ownerPool -= amount;
+        paymentToken.transfer(msg.sender, amount);
+    }
 }
-   
