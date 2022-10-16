@@ -46,6 +46,7 @@ describe("NFT Shop", async () => {
 
     it("uses a valid ERC721 as NFT Collection", async () => {
       const collection = await shopContract.collection();
+      expect(collection).to.not.eq(constants.AddressZero)
     });
   });
 
